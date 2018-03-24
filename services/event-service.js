@@ -11,7 +11,10 @@ client.on('connect', () => {
 });
 
 client.on('message', (topic, message) => {
-    const [_, action, user] = topic.split('/');
+    const splitted = topic.split('/');
+    const action = splitted[1];
+    const user = splitted[2];
+
     if (action === 'pomodoro') {
         socketService.emit(user, message.toString());
     } else {
